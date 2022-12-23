@@ -87,7 +87,7 @@ def make_embed(group_info, date):
             dict(name="Group Members", value=group_info["memberCount"])
         ],
         footer=dict(
-            text='ⓒ Tokyo Club Finder | discord.gg/frv'
+            text='ⓒ Tokyo Club Finder | discord.gg/frv•'
         ),
         timestamp=date.isoformat()
     )
