@@ -79,7 +79,7 @@ def send_webhook(url, **kwargs):
         shutdown_socket(sock)
 def make_embed(group_info, date):
     return dict(
-        title="☆ New Group Found! ☆"
+        title="☆ New Group Found! ☆", color=3447003,
         url=f"https://www.roblox.com/groups/{group_info['id']}",
           fields=[
             dict(name="Group ID", value=group_info["id"]),
@@ -87,7 +87,7 @@ def make_embed(group_info, date):
             dict(name="Group Members", value=group_info["memberCount"])
         ],
         footer=dict(
-            text='ⓒ Tokyo Club Finder | discord.gg/frv•'
+            text='ⓒ Tokyo Club Finder | discord.gg/frv'
         ),
         timestamp=date.isoformat()
     )
