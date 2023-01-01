@@ -1,6 +1,7 @@
 from socket import socket
 from json import dumps as json_dumps
 from base64 import b64encode
+import requests
 
 ssl_context = __import__("ssl").create_default_context()
 
@@ -78,13 +79,19 @@ def send_webhook(url, **kwargs):
     finally:
         shutdown_socket(sock)
 def make_embed(group_info, date):
+    funds = requests.get(f'https://economy.roblox.com/v1/groups/{group_info["id"]}/currency')
+    if "robux" in funds.text:
+       funds = funds.json()["robux"]
+    else:
+       funds = "N/A"
     return dict(
-        title="☆ New Group Found! ☆"
+        title="☆ New Group Found! ☆", color=3447003,
         url=f"https://www.roblox.com/groups/{group_info['id']}",
           fields=[
             dict(name="Group ID", value=group_info["id"]),
             dict(name="Group Name", value=group_info["name"]),
-            dict(name="Group Members", value=group_info["memberCount"])
+            dict(name="Group Members", value=group_info["memberCount"]),
+            dict(name="Funds", value=requests.get("").j)
         ],
         footer=dict(
             text='ⓒ Tokyo Club Finder | discord.gg/frv'
